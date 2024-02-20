@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm6ntpgo0q3mf"]
+
+[ext_resource type="Script" path="res://Scripts/GamePlay/area_detect_target.gd" id="1_mlhqh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kfqn5"]
+radius = 280.0
+
+[node name="AreaDetectTarget" type="Area2D"]
+collision_layer = 0
+collision_mask = 27
+script = ExtResource("1_mlhqh")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kfqn5")

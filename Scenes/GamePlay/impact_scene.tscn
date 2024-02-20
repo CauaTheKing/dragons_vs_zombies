@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://wyyjy65ot6nn"]
+
+[ext_resource type="Script" path="res://Scripts/GamePlay/impact_scene.gd" id="1_7efvo"]
+[ext_resource type="Texture2D" uid="uid://ctsohomfqufxi" path="res://Sprites/DragonEffects/FireDragon/Impact.png" id="2_byjoa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ndp4d"]
+atlas = ExtResource("2_byjoa")
+region = Rect2(0, 832, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wg34n"]
+atlas = ExtResource("2_byjoa")
+region = Rect2(64, 832, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yspqr"]
+atlas = ExtResource("2_byjoa")
+region = Rect2(128, 832, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2b3a"]
+atlas = ExtResource("2_byjoa")
+region = Rect2(192, 832, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rtrht"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ndp4d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wg34n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yspqr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2b3a")
+}],
+"loop": false,
+"name": &"fire",
+"speed": 4.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gqth6"]
+radius = 31.0
+
+[node name="impact_scene" type="Node2D" node_paths=PackedStringArray("sprite", "area")]
+z_index = -1
+script = ExtResource("1_7efvo")
+sprite = NodePath("Sprite")
+area = NodePath("area")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(1, 0.7)
+sprite_frames = SubResource("SpriteFrames_rtrht")
+animation = &"fire"
+speed_scale = 3.0
+
+[node name="area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="shape" type="CollisionShape2D" parent="area"]
+scale = Vector2(1, 0.7)
+shape = SubResource("CircleShape2D_gqth6")
+
+[connection signal="animation_changed" from="Sprite" to="." method="_on_sprite_animation_changed"]
+[connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]

@@ -1,0 +1,158 @@
+[gd_scene load_steps=20 format=3 uid="uid://dt6gyq1dfrip4"]
+
+[ext_resource type="Script" path="res://Scripts/Dragons/fire_dragon.gd" id="1_kg135"]
+[ext_resource type="Texture2D" uid="uid://rpmkisllwbcu" path="res://Sprites/Dragons/Animations/Adult Red Dragon/AdultRedDragonIdleSide.png" id="2_n2e2i"]
+[ext_resource type="PackedScene" uid="uid://cm6ntpgo0q3mf" path="res://Scenes/GamePlay/area_detect_target.tscn" id="3_8glu3"]
+[ext_resource type="Texture2D" uid="uid://ohyovxwx7d1f" path="res://icon.svg" id="4_oni6h"]
+[ext_resource type="Texture2D" uid="uid://ctsohomfqufxi" path="res://Sprites/DragonEffects/FireDragon/Impact.png" id="5_l08bn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycqsa"]
+atlas = ExtResource("2_n2e2i")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjy8c"]
+atlas = ExtResource("2_n2e2i")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkkfg"]
+atlas = ExtResource("2_n2e2i")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7j34"]
+atlas = ExtResource("2_n2e2i")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ng4hb"]
+atlas = ExtResource("2_n2e2i")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ab0ap"]
+atlas = ExtResource("2_n2e2i")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7pwve"]
+atlas = ExtResource("2_n2e2i")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2au7q"]
+atlas = ExtResource("2_n2e2i")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fi6fb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycqsa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjy8c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkkfg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7j34")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ng4hb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ab0ap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7pwve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2au7q")
+}],
+"loop": true,
+"name": &"move",
+"speed": 4.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mfbe2"]
+radius = 9.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ge1on"]
+atlas = ExtResource("5_l08bn")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymqe3"]
+atlas = ExtResource("5_l08bn")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsf2d"]
+atlas = ExtResource("5_l08bn")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eeha6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ge1on")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ymqe3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vsf2d")
+}],
+"loop": true,
+"name": &"burn",
+"speed": 5.0
+}]
+
+[node name="Fire_dragon" type="CharacterBody2D" node_paths=PackedStringArray("sprite_anim", "timer_recarge", "area_detect")]
+scale = Vector2(2, 2)
+collision_layer = 16
+collision_mask = 14
+script = ExtResource("1_kg135")
+sprite_anim = NodePath("Sprite")
+timer_recarge = NodePath("recarge_attack")
+area_detect = NodePath("AreaDetectTarget")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_fi6fb")
+animation = &"idle"
+offset = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_mfbe2")
+
+[node name="recarge_attack" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="AreaDetectTarget" parent="." instance=ExtResource("3_8glu3")]
+visible = false
+
+[node name="Icon" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.294118)
+position = Vector2(-90, 61)
+scale = Vector2(0.121094, 0.0976563)
+texture = ExtResource("4_oni6h")
+
+[node name="Flames" type="Area2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.505882)
+position = Vector2(1.5, -6.5)
+rotation = 0.182072
+collision_layer = 0
+collision_mask = 8
+
+[node name="Shape" type="CollisionPolygon2D" parent="Flames"]
+polygon = PackedVector2Array(0.5, -0.5, 32.5, -21.5, 62.5, -27.5, 65, 11, 38, 15.5)
+
+[node name="Sprites" type="AnimatedSprite2D" parent="Flames"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_eeha6")
+animation = &"burn"
+offset = Vector2(31, -3)
+
+[connection signal="timeout" from="recarge_attack" to="." method="_on_recarge_attack_timeout"]
