@@ -40,58 +40,50 @@ position = Vector2(232, 22)
 speed = 90
 attack_distance = 30
 
-[node name="Zumbi_Standard8" parent="." node_paths=PackedStringArray("sprite_animated") instance=ExtResource("2_64xnk")]
+[node name="Zumbi_Standard8" parent="." instance=ExtResource("2_64xnk")]
 position = Vector2(215, 83)
 speed = 90
 attack_distance = 30
-sprite_animated = NodePath("../Zumbi_Standard7/Sprite")
 
-[node name="Zumbi_Standard9" parent="." node_paths=PackedStringArray("sprite_animated") instance=ExtResource("2_64xnk")]
+[node name="Zumbi_Standard9" parent="." instance=ExtResource("2_64xnk")]
 position = Vector2(286, 106)
 speed = 90
 attack_distance = 30
-sprite_animated = NodePath("../Zumbi_Standard7/Sprite")
 
-[node name="Zumbi_Standard10" parent="." node_paths=PackedStringArray("sprite_animated") instance=ExtResource("2_64xnk")]
+[node name="Zumbi_Standard10" parent="." instance=ExtResource("2_64xnk")]
 position = Vector2(315, 37)
 speed = 90
 attack_distance = 30
-sprite_animated = NodePath("../Zumbi_Standard7/Sprite")
 
-[node name="Zumbi_Standard11" parent="." node_paths=PackedStringArray("sprite_animated") instance=ExtResource("2_64xnk")]
+[node name="Zumbi_Standard11" parent="." instance=ExtResource("2_64xnk")]
 position = Vector2(284, -20)
 speed = 90
 attack_distance = 30
-sprite_animated = NodePath("../Zumbi_Standard7/Sprite")
 
-[node name="Zumbi_Standard12" parent="." node_paths=PackedStringArray("sprite_animated") instance=ExtResource("2_64xnk")]
+[node name="Zumbi_Standard12" parent="." instance=ExtResource("2_64xnk")]
 position = Vector2(182, -25)
 speed = 90
 attack_distance = 30
-sprite_animated = NodePath("../Zumbi_Standard7/Sprite")
 
-[node name="Zumbi_Standard13" parent="." node_paths=PackedStringArray("sprite_animated") instance=ExtResource("2_64xnk")]
+[node name="Zumbi_Standard13" parent="." instance=ExtResource("2_64xnk")]
 position = Vector2(167, 62)
 speed = 90
 attack_distance = 30
-sprite_animated = NodePath("../Zumbi_Standard7/Sprite")
 
-[node name="Zumbi_Standard14" parent="." node_paths=PackedStringArray("sprite_animated") instance=ExtResource("2_64xnk")]
+[node name="Zumbi_Standard14" parent="." instance=ExtResource("2_64xnk")]
 position = Vector2(116, 122)
 speed = 90
 attack_distance = 30
-sprite_animated = NodePath("../Zumbi_Standard7/Sprite")
 
 [node name="Zumbi_Standard15" parent="." instance=ExtResource("2_64xnk")]
 position = Vector2(99, 195)
 speed = 70
 attack_distance = 30
 
-[node name="Zumbi_Standard16" parent="." node_paths=PackedStringArray("sprite_animated") instance=ExtResource("2_64xnk")]
+[node name="Zumbi_Standard16" parent="." instance=ExtResource("2_64xnk")]
 position = Vector2(224, 167)
 speed = 90
 attack_distance = 30
-sprite_animated = NodePath("../Zumbi_Standard7/Sprite")
 
 [node name="Fire_dragon" parent="." instance=ExtResource("3_fxa2c")]
 position = Vector2(500, 300)

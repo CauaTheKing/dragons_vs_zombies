@@ -8,5 +8,7 @@ func attaking() -> void:
 
 
 func _on_sprite_animation_finished():
-	if sprite_animated.animation == 'death':
-		queue_free()
+	pass
+	
+	#if sprite_animated.animation == 'death':
+		#queue_free()
