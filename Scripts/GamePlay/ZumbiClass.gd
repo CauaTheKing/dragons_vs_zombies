@@ -9,12 +9,12 @@ class_name ZumbiBase
 @export var anim_player: AnimationMixer
 
 
-enum STATES {ATTACKING = 1, MOVE_TO_TARGET, IDLE}
+enum STATES {ATTACKING = 1, MOVE_TO_TARGET, IDLE, THROW}
 #var list_anim: Array
 var current_state: int
 var target
 var target_direction: Vector2
-
+var default_speed: int
 
 func set_sprite_flip(value) -> bool:
 	if not value is bool:
@@ -27,9 +27,9 @@ func set_sprite_flip(value) -> bool:
 
 
 func _ready():
+	default_speed = speed
 	add_to_group('zumbi')
-	target = Global.player
-	change_state(STATES.MOVE_TO_TARGET)
+	get_target()
 	#list_anim = sprite_animated.sprite_frames.get_animation_names()
 	
 func change_state(_state: int) -> void:
@@ -38,7 +38,6 @@ func change_state(_state: int) -> void:
 func start_anim(_anim: String = '') -> void:
 	if not anim_player: return
 	
-	print(_anim)
 	
 	var anim_lib: AnimationLibrary = null
 	anim_lib = anim_player.get_animation_library("")
@@ -85,12 +84,30 @@ func _physics_process(delta):
 		STATES.ATTACKING:
 			if has_method('attaking'):
 				call_deferred('attaking')
-				
+		STATES.THROW:
+				throw(delta)
+					
+func get_target() -> void:
+	target = Global.player
+	
+	start_anim('walk')
+	rotation = 0
+	change_state(STATES.MOVE_TO_TARGET)
+
+func throw(delta) -> void:
+	
+	velocity = global_position.direction_to(target_direction)
+	
+	global_translate(velocity * speed * 2 * delta)
+	start_anim('spin')
+	if global_position.distance_to(target_direction) < 10:
+		get_target()
 			
 func move_to_target() -> void:
 	if not target or life <= 0:
 		return
-
+	
+	$Label.text = 'speed: ' + str(speed)
 	var distance_to_target = global_position.distance_to(target.global_position)
 	var direction_to_target: Vector2 = global_position.direction_to(target.global_position)
 		
@@ -105,10 +122,23 @@ func move_to_target() -> void:
 func take_damage(_dmg: int) -> void:
 	life -= _dmg
 	
-	get_node('HitTextEffect').play_effect(_dmg)
+	$HitTextEffect.play_effect(_dmg)
 	
 	if life <= 0:
 		change_state(STATES.IDLE)
 		start_anim('death')
+		
+# =========================
+# funcs chamadas por outros nodes
 
+func ice_effect(_value: bool) -> void:
+	if _value:
+		speed = int(default_speed/3)
+		modulate = '#006bf7'
+		return
+		
+	speed = default_speed
+	modulate = '#ffffff'
+
+	
 		

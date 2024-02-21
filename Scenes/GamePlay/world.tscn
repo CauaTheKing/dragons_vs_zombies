@@ -1,95 +1,52 @@
-[gd_scene load_steps=4 format=3 uid="uid://ta8msbepsp6m"]
+[gd_scene load_steps=5 format=3 uid="uid://ta8msbepsp6m"]
 
 [ext_resource type="PackedScene" uid="uid://cfnndu2yxsb2y" path="res://Scenes/GamePlay/player.tscn" id="1_l3jty"]
 [ext_resource type="PackedScene" uid="uid://c2k4rcv2tkbny" path="res://Scenes/GamePlay/Zumbis/zumbi_standard.tscn" id="2_64xnk"]
-[ext_resource type="PackedScene" uid="uid://dt6gyq1dfrip4" path="res://Scenes/Dragons/fire_dragon.tscn" id="3_fxa2c"]
+[ext_resource type="PackedScene" uid="uid://bcjsrnxp830il" path="res://Scenes/Dragons/ice_dragon.tscn" id="3_s4q3m"]
+[ext_resource type="PackedScene" uid="uid://cwpldgbmngldf" path="res://Scenes/GamePlay/tornado.tscn" id="4_fkncr"]
 
 [node name="World" type="Node2D"]
 position = Vector2(290, 138)
+metadata/_edit_horizontal_guides_ = [19.0]
 
 [node name="Player" parent="." instance=ExtResource("1_l3jty")]
-position = Vector2(489, 78)
+position = Vector2(425, 387)
 
 [node name="Zumbi_Standard2" parent="." instance=ExtResource("2_64xnk")]
-position = Vector2(291, 200)
+position = Vector2(21, 109)
 speed = 90
 attack_distance = 30
 
 [node name="Zumbi_Standard3" parent="." instance=ExtResource("2_64xnk")]
-position = Vector2(164, 224)
+position = Vector2(78, 47)
 speed = 90
 attack_distance = 30
 
 [node name="Zumbi_Standard4" parent="." instance=ExtResource("2_64xnk")]
-position = Vector2(164, 124)
+position = Vector2(-106, 33)
 speed = 90
 attack_distance = 30
 
 [node name="Zumbi_Standard5" parent="." instance=ExtResource("2_64xnk")]
-position = Vector2(44, 149)
+position = Vector2(-226, 58)
 speed = 90
 attack_distance = 30
 
 [node name="Zumbi_Standard6" parent="." instance=ExtResource("2_64xnk")]
-position = Vector2(92, 41)
+position = Vector2(-178, -50)
 speed = 90
 attack_distance = 30
 
 [node name="Zumbi_Standard7" parent="." instance=ExtResource("2_64xnk")]
-position = Vector2(232, 22)
+position = Vector2(-38, -69)
 speed = 90
 attack_distance = 30
 
-[node name="Zumbi_Standard8" parent="." instance=ExtResource("2_64xnk")]
-position = Vector2(215, 83)
-speed = 90
-attack_distance = 30
+[node name="Tornado" parent="." instance=ExtResource("4_fkncr")]
+position = Vector2(235, 240)
 
-[node name="Zumbi_Standard9" parent="." instance=ExtResource("2_64xnk")]
-position = Vector2(286, 106)
-speed = 90
-attack_distance = 30
-
-[node name="Zumbi_Standard10" parent="." instance=ExtResource("2_64xnk")]
-position = Vector2(315, 37)
-speed = 90
-attack_distance = 30
-
-[node name="Zumbi_Standard11" parent="." instance=ExtResource("2_64xnk")]
-position = Vector2(284, -20)
-speed = 90
-attack_distance = 30
-
-[node name="Zumbi_Standard12" parent="." instance=ExtResource("2_64xnk")]
-position = Vector2(182, -25)
-speed = 90
-attack_distance = 30
-
-[node name="Zumbi_Standard13" parent="." instance=ExtResource("2_64xnk")]
-position = Vector2(167, 62)
-speed = 90
-attack_distance = 30
-
-[node name="Zumbi_Standard14" parent="." instance=ExtResource("2_64xnk")]
-position = Vector2(116, 122)
-speed = 90
-attack_distance = 30
-
-[node name="Zumbi_Standard15" parent="." instance=ExtResource("2_64xnk")]
-position = Vector2(99, 195)
-speed = 70
-attack_distance = 30
-
-[node name="Zumbi_Standard16" parent="." instance=ExtResource("2_64xnk")]
-position = Vector2(224, 167)
-speed = 90
-attack_distance = 30
-
-[node name="Fire_dragon" parent="." instance=ExtResource("3_fxa2c")]
-position = Vector2(500, 300)
+[node name="IceDragon" parent="." instance=ExtResource("3_s4q3m")]
+position = Vector2(244, 6)
 lifes = 20
-speed = 40
-direct_damage = 5
-impact_damage = 2
-distance_attack = 280
-max_distance_to_target = 130
+speed = 20
+max_distance_to_target = 150

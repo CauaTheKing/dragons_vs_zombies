@@ -26,16 +26,16 @@ Faça suas mudanças nos arquivos...
 Logo em seguida adicione os arquivos pelo comando ``git``...
 ```sh
 git add . # O ponto adiciona o diretório atual, se estiver na pasta
-          # do projeto, caso contrário use o comando cd, para adicio-
-          # nar todos os arquivos, se não foram todos do projeto modi-
-          # ficados apenas será adicionado os modificados.
+		  # do projeto, caso contrário use o comando cd, para adicio-
+		  # nar todos os arquivos, se não foram todos do projeto modi-
+		  # ficados apenas será adicionado os modificados.
 git add file.ext # ↓
-          # subtitua file.ext (ext: extensão fictícia) pelo arquivo ou
-          # arquivos que queria adicionar separado por ESPAÇOS
+		  # subtitua file.ext (ext: extensão fictícia) pelo arquivo ou
+		  # arquivos que queria adicionar separado por ESPAÇOS
 git add diretorio/ # ↓
-          # substitua diretorio/ pelo diretório desejado;
-          # a / geralmente não interfere mas tenha cuidado se você não
-          # utiliza windows, ou Unix sh/zsh.
+		  # substitua diretorio/ pelo diretório desejado;
+		  # a / geralmente não interfere mas tenha cuidado se você não
+		  # utiliza windows, ou Unix sh/zsh.
 ```
 #### \# como usar o comando CD:
 ```sh
@@ -46,16 +46,16 @@ cd .\dragons_vs_zombies # Windows' CMD.
 Depois use o ``comit`` do ``git``:
 ```sh
 git commit -m "commit msg" # mude o /commit msg/ para algo mais
-                           # facil de se entender que descreva
-                           # a mudanças nos arquivos feitas por
-                           # você.
+						   # facil de se entender que descreva
+						   # a mudanças nos arquivos feitas por
+						   # você.
 ```
 Agora só dar o ``push`` do ``git``:
 
 (AVISO, USE SOMENTE NA BRANCH MAIN DA ORIGIN)
 ```sh
 git push # o comando variará se você estiver usando outra branch.
-         # cheque o guia do git.
+		 # cheque o guia do git.
 ```
 ## Atualizando seus arquivos de acordo com o repositório no GitHub na branch Main/Origin:
 só precisa rodar o:

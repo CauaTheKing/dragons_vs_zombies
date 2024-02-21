@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://c2k4rcv2tkbny"]
+[gd_scene load_steps=40 format=3 uid="uid://c2k4rcv2tkbny"]
 
 [ext_resource type="Script" path="res://Scripts/Zumbis/zumbi_1.gd" id="1_20fuy"]
 [ext_resource type="Texture2D" uid="uid://bggy6psde23k1" path="res://Sprites/Zumbis/Standard/Zombie/Attack.png" id="2_22wwx"]
@@ -309,10 +309,43 @@ tracks/1/keys = {
 "values": ["walk"]
 }
 
+[sub_resource type="Animation" id="Animation_w6p6v"]
+resource_name = "spin"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_x0714"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e3av1"]
 _data = {
+"RESET": SubResource("Animation_x0714"),
 "attack": SubResource("Animation_igqto"),
 "death": SubResource("Animation_ic84t"),
+"spin": SubResource("Animation_w6p6v"),
 "walk": SubResource("Animation_71jyu")
 }
 
@@ -346,3 +379,11 @@ libraries = {
 "": SubResource("AnimationLibrary_e3av1")
 }
 autoplay = "walk"
+
+[node name="Label" type="Label" parent="."]
+offset_left = -19.0
+offset_top = -47.0
+offset_right = 21.0
+offset_bottom = -24.0
+theme_override_font_sizes/font_size = 9
+text = "55"

@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://cfoysr1mnleam"]
+
+[ext_resource type="Script" path="res://Scripts/Dragons/light_dragon.gd" id="1_kiom1"]
+[ext_resource type="Texture2D" uid="uid://dt3eighn03gbx" path="res://Sprites/Dragons/Animations/Great Wyvern/GreatWyvernIdleSide.png" id="2_slurg"]
+[ext_resource type="PackedScene" uid="uid://cm6ntpgo0q3mf" path="res://Scenes/GamePlay/area_detect_target.tscn" id="3_y241s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76sjb"]
+atlas = ExtResource("2_slurg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ip7yc"]
+atlas = ExtResource("2_slurg")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgivg"]
+atlas = ExtResource("2_slurg")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8x40"]
+atlas = ExtResource("2_slurg")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q7gnj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76sjb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ip7yc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgivg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b8x40")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ybst"]
+radius = 18.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0d7e4"]
+radius = 73.437
+
+[node name="StormDragon" type="CharacterBody2D" node_paths=PackedStringArray("sprite_anim", "area_detect")]
+collision_layer = 16
+script = ExtResource("1_kiom1")
+sprite_anim = NodePath("Sprite")
+max_distance_to_target = 200
+area_detect = NodePath("AreaDetectTarget")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_q7gnj")
+animation = &"move"
+frame_progress = 0.131779
+speed_scale = 1.5
+offset = Vector2(0, -8)
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -17)
+shape = SubResource("CircleShape2D_5ybst")
+
+[node name="Area" type="Area2D" parent="."]
+
+[node name="Shaoe" type="CollisionShape2D" parent="Area"]
+position = Vector2(134, -3)
+shape = SubResource("CircleShape2D_0d7e4")
+
+[node name="AreaDetectTarget" parent="." instance=ExtResource("3_y241s")]

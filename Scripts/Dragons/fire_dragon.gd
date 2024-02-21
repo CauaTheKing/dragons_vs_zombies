@@ -4,7 +4,6 @@ extends DragonBase
 
 var flame_damage: int = 4
 			
-			
 
 func long_attack() -> void: #ataque de longe, de disparos de bola de fogo
 	if not target or not can_attack:
@@ -37,7 +36,6 @@ func close_attack() -> void: #ataque de perto (ataque das chamas para esse draga
 	flames.visible = true
 	flames.look_at(target.global_position)
 
-	
 	for t in targets_in_flames:
 		if t.has_method('take_damage'):
 			t.take_damage(flame_damage)

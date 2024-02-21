@@ -1,0 +1,152 @@
+[gd_scene load_steps=20 format=3 uid="uid://bcjsrnxp830il"]
+
+[ext_resource type="Texture2D" uid="uid://swgk0xmvxngx" path="res://Sprites/Dragons/Animations/Baby White Dragon/BabyWhiteDragonIdleSide.png" id="1_e3126"]
+[ext_resource type="Script" path="res://Scripts/Dragons/ice_dragon.gd" id="1_rv1gf"]
+[ext_resource type="Texture2D" uid="uid://bsoa7t8uy1utv" path="res://Sprites/DragonEffects/IceDragon/Retro Impact Effect Pack 3 C.png" id="3_1o2vv"]
+[ext_resource type="Texture2D" uid="uid://ohyovxwx7d1f" path="res://icon.svg" id="4_m07hm"]
+[ext_resource type="PackedScene" uid="uid://cm6ntpgo0q3mf" path="res://Scenes/GamePlay/area_detect_target.tscn" id="5_nc7n1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4duap"]
+atlas = ExtResource("1_e3126")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2pjq"]
+atlas = ExtResource("1_e3126")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7far0"]
+atlas = ExtResource("1_e3126")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfug6"]
+atlas = ExtResource("1_e3126")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iohyw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4duap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2pjq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7far0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfug6")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w8ixh"]
+radius = 15.0333
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ntjes"]
+atlas = ExtResource("3_1o2vv")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ri7cn"]
+atlas = ExtResource("3_1o2vv")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pj4c6"]
+atlas = ExtResource("3_1o2vv")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mgwpy"]
+atlas = ExtResource("3_1o2vv")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jqkr"]
+atlas = ExtResource("3_1o2vv")
+region = Rect2(128, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ndxoi"]
+atlas = ExtResource("3_1o2vv")
+region = Rect2(160, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qkw1t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ntjes")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ri7cn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pj4c6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mgwpy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jqkr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ndxoi")
+}],
+"loop": true,
+"name": &"freeze",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3qh6j"]
+radius = 64.0703
+
+[node name="IceDragon" type="CharacterBody2D" node_paths=PackedStringArray("sprite_anim", "area_detect")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_rv1gf")
+sprite_anim = NodePath("Sprite")
+area_detect = NodePath("AreaDetectTarget")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_iohyw")
+animation = &"move"
+offset = Vector2(0, -8)
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -12)
+shape = SubResource("CircleShape2D_w8ixh")
+
+[node name="FreezingArea" type="Area2D" parent="."]
+visible = false
+position = Vector2(1, -12)
+scale = Vector2(-1, 1)
+collision_layer = 0
+collision_mask = 8
+
+[node name="Sprite" type="AnimatedSprite2D" parent="FreezingArea"]
+texture_filter = 1
+position = Vector2(1, -13)
+rotation = -0.463521
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_qkw1t")
+animation = &"freeze"
+frame_progress = 0.81635
+speed_scale = 1.5
+offset = Vector2(-16, -8)
+
+[node name="Shape" type="CollisionShape2D" parent="FreezingArea"]
+position = Vector2(-70, -6)
+rotation = -0.0225071
+shape = SubResource("CircleShape2D_3qh6j")
+
+[node name="Icon" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.360784)
+position = Vector2(-102.5, -9.5)
+scale = Vector2(0.101563, 0.0859375)
+texture = ExtResource("4_m07hm")
+
+[node name="AreaDetectTarget" parent="." instance=ExtResource("5_nc7n1")]
+visible = false
+position = Vector2(-1, -13)
+
+[connection signal="body_exited" from="FreezingArea" to="." method="_on_freezing_area_body_exited"]
