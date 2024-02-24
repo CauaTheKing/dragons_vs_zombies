@@ -12,3 +12,8 @@ func _on_sprite_animation_finished():
 	
 	#if sprite_animated.animation == 'death':
 		#queue_free()
+
+func _on_animation_player_animation_finished(anim_name):
+	match anim_name:
+		'spin':
+			rotation = 0.0

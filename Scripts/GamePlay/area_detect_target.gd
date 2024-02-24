@@ -1,7 +1,7 @@
 extends Area2D
 
-
-
+func set_shape(_lenght: int) -> void:
+	$Shape.shape.radius = _lenght
 
 func get_targets_by_group(group_target: String) -> Array:
 	var targets_in_area: Array = get_overlapping_bodies()

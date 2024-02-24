@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://bin5fxrlsg61j"]
+
+[ext_resource type="Script" path="res://Scripts/GamePlay/ray.gd" id="1_4w0po"]
+[ext_resource type="Texture2D" uid="uid://bug12pc1dqitd" path="res://Sprites/DragonEffects/StormDragon/Retro Impact Effect Pack 2 B.png" id="2_gwh86"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0bxjs"]
+atlas = ExtResource("2_gwh86")
+region = Rect2(576, 1080, 64, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cl8o7"]
+atlas = ExtResource("2_gwh86")
+region = Rect2(512, 1080, 64, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ac64a"]
+atlas = ExtResource("2_gwh86")
+region = Rect2(448, 1080, 64, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grwo5"]
+atlas = ExtResource("2_gwh86")
+region = Rect2(384, 1080, 64, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5374e"]
+atlas = ExtResource("2_gwh86")
+region = Rect2(320, 1080, 64, 72)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d76jw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0bxjs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cl8o7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ac64a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grwo5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5374e")
+}],
+"loop": false,
+"name": &"ray",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_saqjf"]
+resource_name = "ray"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sxb8b"]
+_data = {
+"ray": SubResource("Animation_saqjf")
+}
+
+[node name="Ray" type="Node2D"]
+script = ExtResource("1_4w0po")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(70, 120)
+sprite_frames = SubResource("SpriteFrames_d76jw")
+animation = &"ray"
+frame = 4
+frame_progress = 1.0
+speed_scale = 6.0
+offset = Vector2(-84, -156)
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sxb8b")
+}
+
+[connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]

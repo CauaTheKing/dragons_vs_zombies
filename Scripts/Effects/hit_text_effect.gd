@@ -2,7 +2,7 @@ extends Node2D
 
 func play_effect(damage: int) -> void:
 	visible = true
-	$Label.text = str(damage)
+	$Label.text = '-' + str(damage)
 	$Anim.play('start')
 
 

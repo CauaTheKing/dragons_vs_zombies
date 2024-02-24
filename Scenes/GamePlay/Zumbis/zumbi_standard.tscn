@@ -214,6 +214,21 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_ige5r"]
 radius = 12.0
 
+[sub_resource type="Animation" id="Animation_x0714"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="Animation" id="Animation_igqto"]
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -282,6 +297,21 @@ tracks/2/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_w6p6v"]
+resource_name = "spin"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.407842, 0.401426, -0.401426]
+}
+
 [sub_resource type="Animation" id="Animation_71jyu"]
 loop_mode = 1
 tracks/0/type = "value"
@@ -309,37 +339,6 @@ tracks/1/keys = {
 "values": ["walk"]
 }
 
-[sub_resource type="Animation" id="Animation_w6p6v"]
-resource_name = "spin"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 6.28319]
-}
-
-[sub_resource type="Animation" id="Animation_x0714"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e3av1"]
 _data = {
 "RESET": SubResource("Animation_x0714"),
@@ -351,7 +350,7 @@ _data = {
 
 [node name="Zumbi_Standard" type="CharacterBody2D" node_paths=PackedStringArray("anim_player")]
 collision_layer = 8
-collision_mask = 31
+collision_mask = 15
 script = ExtResource("1_20fuy")
 life = 10
 speed = 200
@@ -367,7 +366,7 @@ animation = &"walk"
 frame = 9
 offset = Vector2(0, -14)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Shape" type="CollisionShape2D" parent="."]
 position = Vector2(3, -11)
 shape = SubResource("CircleShape2D_ige5r")
 
@@ -387,3 +386,5 @@ offset_right = 21.0
 offset_bottom = -24.0
 theme_override_font_sizes/font_size = 9
 text = "55"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

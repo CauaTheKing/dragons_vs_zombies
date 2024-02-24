@@ -23,6 +23,7 @@ var can_attack: bool = true
 
 func _ready():
 	list_anim = sprite_anim.sprite_frames.get_animation_names()
+	area_detect.set_shape(distance_attack)
 	change_state(STATES.MOVE)
 	
 func change_state(_state: int) -> void:
@@ -57,7 +58,8 @@ func move_to_target() -> void:
 		return
 	
 	#print(target.sprite_animated.animation, target.life)
-	$Icon.global_position = target.global_position #apenas para teste
+	if has_node('Icon'):
+		$Icon.global_position = target.global_position #apenas para teste
 	
 	var direction_to_target: Vector2 = global_position.direction_to(target.global_position)
 	var distance_to_target = global_position.distance_to(target.global_position)
@@ -68,14 +70,16 @@ func move_to_target() -> void:
 	
 	if list_anim.has('move'):
 		start_anim('move')
-	
+
 	if distance_to_target < distance_attack and distance_to_target > max_distance_to_target:
 		#significa que o alvo(target) tá dentro do alcance de ataque de projeteis e longe demais pra atacar com chamas
 		if has_method('long_attack'):
 		 # ---> eu verifico se o dragao tem essa func porque talvez nem todos vao ter essa habilidade de atacar de longe
 			call_deferred('long_attack')
+			return
 	
-	elif distance_to_target < max_distance_to_target:
+	elif distance_to_target < max_distance_to_target and target:
 		#quando o alvo(target) tá perto demais, assim podendo usar o ataque de chamas
 		if has_method('close_attack'):
+			print('torna')
 			call_deferred('close_attack')

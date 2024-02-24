@@ -95,7 +95,7 @@ func get_target() -> void:
 	change_state(STATES.MOVE_TO_TARGET)
 
 func throw(delta) -> void:
-	
+	$Shape.disabled = true
 	velocity = global_position.direction_to(target_direction)
 	
 	global_translate(velocity * speed * 2 * delta)
@@ -110,7 +110,8 @@ func move_to_target() -> void:
 	$Label.text = 'speed: ' + str(speed)
 	var distance_to_target = global_position.distance_to(target.global_position)
 	var direction_to_target: Vector2 = global_position.direction_to(target.global_position)
-		
+	
+	$Shape.disabled = false
 	velocity = direction_to_target * speed
 	move_and_slide()
 	
